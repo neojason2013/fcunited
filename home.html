@@ -1,105 +1,86 @@
 <html lang="zh">
-  <head>
-    <meta charset="utf-8">
-    <title>My First Bitstarter</title>
-    <link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css">
-    <style type="text/css">
-      body {
-        padding-top: 20px;
-        padding-bottom: 40px;
-      }
-      .container {
-        width: 960px;
-      }
-      p.lead {
-        padding-top: 15px;
-      }
-      .navigation, .pitch, .section1, .section2, .faq, .footer {
-        padding: 10px 0px 10px 0px;
-      }
-      .heading {
-        border: 1px dotted;
-        text-align: right;
-      }
-      .video, .thermometer, .order, .social {
-        border: 1px dotted;
-        text-align: center;
-      }
-      .video {
-        /* Internal borders have 1px width, thus need to add 4 x 1px to 120px. */
-        height: 124px;
-        line-height: 124px;
-      }
-      .thermometer, .order, .social {
-        /* line-height to vertically center: http://phrogz.net/css/vertical-align/index.html */
-        height: 40px;
-        line-height: 40px;
-      }
-      div.row {
-        border: 1px solid;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-		<div class="span4">
-		  <p class="lead"><img src="./img/fcunited.png"/></p>
-		</div>
-		  <div class="row container" class="span8">
-			  <h1>FC United of Manchester 2013/14 </h1>
-			  <hr>
-			  <div class="span4">
-				<ul>
-					  <li>北部超级联赛超级组 第 1 位</li>
-					  <li>胜 0 平 0 负 0 得 00 失 00</li>
-					  <li>近期成绩 胜 胜 胜 胜 胜 胜</li>
-				  </ul>
-				</div>
-			  <div class="span4">
-				<ul>
-					  <li>足总杯 资格赛第 1 轮</li>
-					  <li>低级组足总杯 资格赛第 1 轮</li>
-					  <li>北部超级联赛联赛杯 第 3 轮</li>
-					  <li>曼彻斯特足协杯 第 1 轮</li>
-				  </ul>
-				</div>
-		  </div>
-      <div class="row pitch">
-		<div class="span6 video">
-		  Video
-		</div>
-		<div class="span6">
-		  <div class="thermometer">
-			Thermometer
-		  </div>
-		  <div class="order">
-			Order
-		  </div>
-		  <div class="social">
-			Social
-		  </div>
-		</div>
-      </div>
-      <div class="row section1">
-		<div class="span12">
-		  Marketing Section 1
-		</div>
-      </div>
-      <div class="row section2">
-		<div class="span12">
-		  Marketing Section 2
-		</div>
-      </div>
-      <div class="row faq">
-		<div class="span12">
-		  FAQ
-		</div>
-      </div>
-      <div class="row footer">
-		<div class="span12">
-		  Footer
-		</div>
-      </div>
-    </div>
-  </body>
+	<head>
+		<meta charset="utf-8">
+		<title>My First Bitstarter</title>
+		<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css">
+		<style type="text/css">
+			body {
+				padding-top: 20px;
+				padding-bottom: 40px;
+                font: 13px/1.3 Arial,"Microsoft Yahei"
+			}
+			.container {
+				width: 960px;
+			}
+			p.lead {
+				padding-top: 15px;
+			}
+			.heading {
+				border: 1px dotted;
+				text-align: right;
+			}
+            .row {
+                border: 0px solid;
+            }
+            .ingame {
+                font-size: 13pt;
+                color: red;
+            }
+            .outgame {
+                font-size: 13pt;
+                text-decoration: line-through;
+                color: grey;
+            }
+            .topscore {
+                font-size: 20px;
+                color: red;
+            }
+            .topform {
+                font-size: 16px;
+            }
+		</style>
+	</head>
+	<body>
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div class="row">
+                        <div class="span4">
+                            <img src="./img/fcunited.png"/>
+                        </div>
+                        <div class="span8">
+                            <h1>FC United of Manchester 2013/14 </h1>
+                            <hr>
+                            <div class="row">
+                                <div class="span5">
+                                    <p>北部超级联赛超级组</p>
+                                    <p>
+                                        排名：<a class="topscore">12</a>
+                                        战绩：<a class="topscore">5-3-0</a>
+                                        入球：<a class="topscore">32-10</a>
+                                        积分：<a class="topscore">32</a>
+                                    </p>
+                                    <p>
+                                        近期战绩：<a class="topform">胜平负胜平负</a>
+                                    </p>
+                                </div>
+                                <div class="span3">
+                                    <div class="row">
+                                        <div class="span2">足总杯资格赛</div>
+                                        <div class="span1">第 <a class="ingame">1</a> 轮</div>
+                                        <div class="span2">低级组足总杯资格赛</div>
+                                        <div class="span1">第 <a class="ingame">1</a> 轮</div>
+                                        <div class="span2">北部超级联赛联赛杯</div>
+                                        <div class="span1">第 <a class="ingame">3</a> 轮</div>
+                                        <div class="span2">曼彻斯特足协杯</div>
+                                        <div class="span1">第 <a class="ingame">1</a> 轮</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</body>
 <html>
