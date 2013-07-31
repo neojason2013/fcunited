@@ -1,9 +1,98 @@
 <html lang="zh">
 	<head>
 		<meta charset="utf-8">
-		<title>My First Bitstarter</title>
-		<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css">
-		<style type="text/css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--<link href="./css/bootstrap-responsive.css" rel="stylesheet"> -->
+        <link href="./css/bootstrap.css" rel="stylesheet">
+        <script type="text/javascript" src="./js/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="./js/bootstrap.js"></script>
+        <script>
+            function showOpponent(){
+                $("#dataTable").html("opponent");
+            }
+            function showTable(){
+                url = "./data/table.html";
+                $.get(url, function(data){
+                    var strHtml = "";//存储数据的变量
+                    $("#dataTable").empty();//清空内容
+                    var x = eval('(' + data + ')');
+                    //alert(x.rawdata.length);
+                    //strHtml += data.rawdata.length();
+                    strHtml += "<caption><strong>2013-14 北部超级联赛超级组积分榜</strong> <i>更新时间：" + x.modified + "</i></caption>"
+                    strHtml += "<thead><tr><td>排名</td><td>球队</td><td>赛</td><td>胜</td><td>平</td><td>负</td><td>得</td><td>失</td><td>净</td><td>积</td></tr></thead>";
+                    strHtml += "<tbody>"
+                    for (var i = 0; i < x.rawdata.length; i++) {
+                        var rank = "";
+                        if (i == 0) {rank = "promotion"};
+                        if (i > 0 && i < 5) {rank = "playoff"};
+                        if (i >= 5 && i < 20) {rank = ""};
+                        if (i >= 20) {rank = "relegation"};
+                        strHtml += "<tr class='" + rank  + "'>";
+                        strHtml += "<td>" + x.rawdata[i].rank + "</td>";
+                        strHtml += "<td>"+ x.rawdata[i].team + "</td>";
+                        strHtml += "<td>" + x.rawdata[i].p + "</td>";
+                        strHtml += "<td>" + x.rawdata[i].w + "</td>";
+                        strHtml += "<td>" + x.rawdata[i].d + "</td>";
+                        strHtml += "<td>" + x.rawdata[i].l + "</td>";
+                        strHtml += "<td>"+ x.rawdata[i].gf + "</td>";
+                        strHtml += "<td>" + x.rawdata[i].ga + "</td>";
+                        strHtml += "<td>" + x.rawdata[i].gd + "</td>";
+                        strHtml += "<td>" + x.rawdata[i].pts + "</td>";
+                        strHtml += "</tr>";
+                    }
+                    strHtml += "</tbody>"
+                    //alert(strHtml);
+                    $("#dataTable").html(strHtml);
+                })
+            }
+            function showFixture(){
+                url = "./data/fixture.html";
+                $.get(url, function(data){
+                    var strHtml = "";//存储数据的变量
+                    $("#dataTable").empty();//清空内容
+                    var x = eval('(' + data + ')');
+                    //alert(x.rawdata.length);
+                    //strHtml += data.rawdata.length();
+                    strHtml += "<caption><strong>2013-14 赛季曼市联队赛程</strong> <i>更新时间：" + x.modified + "</i></caption>"
+                    strHtml += "<thead><tr><td>赛事</td><td>日期</td><td>星期</td><td>对手</td><td>主客</td><td>比分</td><td>入球球员</td><td>观众数</td></tr></thead>";
+                    strHtml += "<tbody>"
+                    for (var i = 0; i < x.rawdata.length; i++) {
+                        strHtml += "<tr>";
+                        strHtml += "<td>" + x.rawdata[i].comp + "</td>";
+                        strHtml += "<td>"+ x.rawdata[i].date + "</td>";
+                        strHtml += "<td>" + x.rawdata[i].weekday + "</td>";
+                        strHtml += "<td>" + x.rawdata[i].opponent + "</td>";
+                        strHtml += "<td>" + x.rawdata[i].hoa + "</td>";
+                        strHtml += "<td>" + "" + "</td>";
+                        strHtml += "<td>" + "" + "</td>";
+                        strHtml += "<td>" + "" + "</td>";
+                        strHtml += "</tr>";
+                    }
+                    strHtml += "</tbody>"
+                    //alert(strHtml);
+                    $("#dataTable").html(strHtml);
+                })
+            }
+            function showStatistics(){
+                url = "./data/statistics.html";
+                $.get(url, function(data){
+                    var strHtml = "";//存储数据的变量
+                    $("#dataTable").empty();//清空内容
+                    var x = eval('(' + data + ')');
+                    //alert(x.rawdata.length);
+                    //strHtml += data.rawdata.length();
+                    for (var i = 0; i < x.rawdata.length; i++) {
+                        strHtml += "p："+ x.rawdata[i].player+"<br>";
+                        strHtml += "w："+x.rawdata[i].goal+"<br>";
+                    }
+                    //alert(strHtml);
+                    $("#dataTable").html(strHtml);
+                })
+            }
+        </script>
+
+        <title>My First Bitstarter</title>
+        <style type="text/css">
 			body {
 				padding-top: 20px;
 				padding-bottom: 40px;
@@ -38,21 +127,30 @@
             .topform {
                 font-size: 16px;
             }
+            .promotion {
+                background-color: rgb(172, 225, 175);
+            }
+            .playoff {
+                background-color: rgb(208, 240, 192);
+            }
+            .relegation {
+                background-color: rgb(255, 204, 204);
+            }
 		</style>
 	</head>
 	<body>
         <div class="container">
-            <div class="row">
+            <div class="row" style="display:none">
                 <div class="span12">
                     <div class="row">
-                        <div class="span4">
+                        <div class="span3">
                             <img src="./img/fcunited.png"/>
                         </div>
-                        <div class="span8">
+                        <div class="span9">
                             <h1>FC United of Manchester 2013/14 </h1>
                             <hr>
                             <div class="row">
-                                <div class="span5">
+                                <div class="span6">
                                     <p>北部超级联赛超级组</p>
                                     <p>
                                         排名：<a class="topscore">12</a>
@@ -81,6 +179,30 @@
                     </div>
                 </div>
             </div>
-        </div>
+
+            <ul  class="nav nav-tabs">
+                <li onclick="showOpponent();" class="active"><a href="#opponent" data-toggle="tab">下场对手</a></li>
+                <li onclick="showTable();"><a href="#table" data-toggle="tab">积分榜</a></li>
+                <li onclick="showFixture();"><a href="#fixture" data-toggle="tab">赛程</a></li>
+                <li onclick="showStatistics();"><a href="#statistics" data-toggle="tab">出场统计</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="opponent" />
+                <div class="tab-pane" id="table" />
+                <div class="tab-pane" id="fixture" />
+                <div class="tab-pane" id="statistics" />
+            </div>
+
+            <div class="container">
+                <table id="dataTable" class="table table-condensed table-hover">
+                </table>
+            </div>
+
+            <div id="jsonTip">
+
+
+
+            </div>
 	</body>
 <html>
